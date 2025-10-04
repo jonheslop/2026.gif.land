@@ -2,6 +2,7 @@
 import "./styles/global.css";
 import { Font } from "astro:assets";
 import Header from "./components/Header.astro";
+import Footer from "./components/Footer.astro";
 ---
 
 <html lang="en">
@@ -22,6 +23,7 @@ import Header from "./components/Header.astro";
       <main class="flex-1">
         <slot />
       </main>
+      <Footer />
     </div>
   </body>
 </html>
