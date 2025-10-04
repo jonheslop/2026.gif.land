@@ -1,0 +1,29 @@
+---
+const { row } = Astro.props;
+---
+
+<li class="flex flex-col gap-2 group">
+  <a target="_blank" href={`https://gif.land/${row.url}`}>
+    <img src={`https://gif.land/${row.url}`} />
+  </a>
+  <div>
+    <p class="text-sm leading-tight truncate" title={row.url}>
+      <a target="_blank" href={`https://gif.land/${row.url}`}>
+        {row.url}
+      </a>
+    </p>
+    <p
+      class="text-sm leading-tight text-neutral-500 dark:text-neutral-400 mt-0.5"
+    >
+      Tags:{" "}
+      {
+        row.tags.split(", ").map((tag, index) => (
+          <a href={`/search/${encodeURI(tag)}`} class="hover:underline">
+            {tag}
+            {index < row.tags.split(", ").length - 1 ? ", " : ""}
+          </a>
+        ))
+      }
+    </p>
+  </div>
+</li>
