@@ -1,16 +1,22 @@
 ---
+import { turso } from "../turso";
+import Layout from "../Layout.astro";
 
+const { rows } = await turso.execute(
+  "SELECT * FROM favourites ORDER BY url ASC",
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <ul
+    class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end"
+  >
+    {
+      rows.map((row) => (
+        <li>
+          <img src={`https://gif.land/${row.url}`} />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

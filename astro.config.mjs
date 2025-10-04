@@ -1,11 +1,33 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
+  experimental: {
+    fonts: [
+      {
+        provider: "local",
+        name: "soehne",
+        cssVariable: "--font-soehne",
+        variants: [
+          {
+            weight: 400,
+            style: "normal",
+            src: ["./src/fonts/soehne-web-buch.woff2"],
+          },
+          {
+            weight: 400,
+            style: "italic",
+            src: ["./src/fonts/soehne-web-buch-kursiv.woff2"],
+          },
+          // ...
+        ],
+      },
+    ],
+  },
 });
