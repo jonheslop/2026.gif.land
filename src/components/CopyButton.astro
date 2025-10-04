@@ -1,0 +1,33 @@
+---
+const { text } = Astro.props;
+---
+
+<astro-copy data-text={text}>
+  <button
+    class="px-2 h-12 pb-px bg-emerald-500 dark:bg-emerald-800 text-white hover:bg-emerald-700 focus:bg-emerald-700 transition-colors mt-4 flex items-center leading-none rounded-sm"
+  >
+    copy link to clipboard
+  </button>
+</astro-copy>
+
+<script>
+  class AstroCopy extends HTMLElement {
+    connectedCallback() {
+      const text = this.dataset.text;
+      const button = this.querySelector("button");
+
+      if (button && text) {
+        button.addEventListener("click", (e) => {
+          navigator.clipboard.writeText(text);
+          button.innerText = "copied!";
+          setTimeout(() => {
+            (e.target as HTMLElement).blur();
+            button.innerText = "copy link to clipboard!";
+          }, 2000);
+        });
+      }
+    }
+  }
+
+  customElements.define("astro-copy", AstroCopy);
+</script>
