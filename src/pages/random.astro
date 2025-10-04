@@ -1,0 +1,18 @@
+---
+import { turso, type Fave } from "../turso";
+
+const { rows } = await turso.execute(
+  `SELECT * FROM favourites ORDER BY RANDOM() LIMIT 1`,
+);
+
+const fave = rows[0] as Fave;
+
+if (!fave) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
+}
+
+return Astro.redirect(`/info/${fave.url}`);
+---
