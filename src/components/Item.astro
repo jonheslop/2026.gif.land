@@ -7,11 +7,19 @@ const { row } = Astro.props;
     <img src={`https://gif.land/${row.url}`} />
   </a>
   <div>
-    <p class="text-sm leading-tight truncate" title={row.url}>
-      <a target="_blank" href={`https://gif.land/${row.url}`}>
-        {row.url}
+    <header class="flex justify-between">
+      <p class="text-sm leading-tight truncate" title={row.url}>
+        <a target="_blank" href={`https://gif.land/${row.url}`}>
+          {row.url}
+        </a>
+      </p>
+      <a
+        class="hover:underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500 text-sm leading-none hidden group-hover:block"
+        href={`/info/${row.url}`}
+      >
+        # <span class="sr-only">Info</span>
       </a>
-    </p>
+    </header>
     <p
       class="text-sm leading-tight text-neutral-500 dark:text-neutral-400 mt-0.5"
     >
