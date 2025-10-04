@@ -1,0 +1,40 @@
+---
+import { turso } from "../turso";
+import Layout from "../Layout.astro";
+
+const { rows } = await turso.execute(
+  "SELECT * FROM favourites ORDER BY created_at DESC",
+);
+---
+
+<Layout>
+  <ul
+    class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end"
+  >
+    {
+      rows.map((row) => (
+        <li class="flex flex-col gap-2 group">
+          <a target="_blank" href={`https://gif.land/${row.url}`}>
+            <img src={`https://gif.land/${row.url}`} />
+          </a>
+          <div>
+            <p class="text-sm leading-tight truncate" title={row.url}>
+              <a target="_blank" href={`https://gif.land/${row.url}`}>
+                {row.url}
+              </a>
+            </p>
+            <p class="text-sm leading-tight text-neutral-500 dark:text-neutral-400 mt-0.5">
+              Tags:{" "}
+              {row.tags.split(", ").map((tag, index) => (
+                <a href={`/search/${encodeURI(tag)}`} class="hover:underline">
+                  {tag}
+                  {index < row.tags.split(", ").length - 1 ? ", " : ""}
+                </a>
+              ))}
+            </p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
