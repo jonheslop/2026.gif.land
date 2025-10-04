@@ -21,7 +21,13 @@ const { fave: item } = Astro.props;
 
 <Layout>
   <div class="flex flex-col lg:grid grid-cols-4 gap-4 lg:gap-8 xl:mt-4">
-    <img src={`https://gif.land/${slug}`} />
+    <img
+      class="w-full lg:col-span-2"
+      width={item.width}
+      height={item.height}
+      alt={item.url}
+      src={`https://gif.land/${slug}`}
+    />
     <article
       class="z-20 mix-blend-difference hover:mix-blend-normal hover:bg-white transition-colors p-4 -m-4 -mt-6 rounded-sm self-start lg:col-start-3"
     >

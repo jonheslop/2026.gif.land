@@ -4,7 +4,13 @@ const { row } = Astro.props;
 
 <li class="flex flex-col gap-2 group">
   <a target="_blank" href={`https://gif.land/${row.url}`}>
-    <img src={`https://gif.land/${row.url}`} />
+    <img
+      class="w-full"
+      width={row.width}
+      height={row.height}
+      alt={row.url}
+      src={`https://gif.land/${row.url}`}
+    />
   </a>
   <div>
     <header class="flex justify-between">
