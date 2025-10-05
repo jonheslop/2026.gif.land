@@ -1,10 +1,11 @@
 ---
 const { row } = Astro.props;
+import { Image } from "astro:assets";
 ---
 
 <li class="flex flex-col gap-2 group">
   <a target="_blank" href={`https://gif.land/${row.url}`}>
-    <img
+    <Image
       class="w-full"
       width={row.width}
       height={row.height}
