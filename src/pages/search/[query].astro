@@ -1,0 +1,25 @@
+---
+import { turso } from "../../turso";
+import Layout from "../../Layout.astro";
+import Item from "../../components/Item.astro";
+
+const { query } = Astro.params;
+
+if (!query) {
+  return Astro.redirect("/");
+}
+
+const decodedQuery = decodeURI(query);
+
+const { rows } = await turso.execute(
+  `SELECT * FROM favourites WHERE URL LIKE '%${decodedQuery}%' OR TAGS LIKE '%${decodedQuery}%'`,
+);
+---
+
+<Layout>
+  <ul
+    class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end"
+  >
+    {rows.map((row, index) => <Item row={row} key={index} />)}
+  </ul>
+</Layout>
