@@ -3,8 +3,12 @@
   "name": "gif-land",
   // Update to today's date
   "compatibility_date": "2025-10-04",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page", // If you have a custom `src/pages/404.astro` page
   },
+  "observability": {
+    "enabled": true
+  }
 }
