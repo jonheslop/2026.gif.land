@@ -32,7 +32,7 @@ import { Image } from "astro:assets";
     >
       Tags:{" "}
       {
-        row.tags.split(", ").map((tag, index) => (
+        row.tags.split(", ").map((tag: string, index: number) => (
           <a href={`/search/${encodeURI(tag)}`} class="hover:underline">
             {tag}
             {index < row.tags.split(", ").length - 1 ? ", " : ""}
