@@ -1,3 +1,5 @@
+// Taken from https://github.com/loftwah/astroflare
+
 import type { APIContext } from "astro";
 
 // Define the expected structure of Cloudflare environment bindings
