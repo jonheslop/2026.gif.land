@@ -2,7 +2,7 @@ import type { APIContext } from "astro";
 
 // Define the expected structure of Cloudflare environment bindings
 interface CloudflareEnv {
-  R2Bucket: R2Bucket; // Use the R2Bucket type if available or 'any'
+  gifLandR2: R2Bucket; // Use the R2Bucket type if available or 'any'
 }
 
 // Define the expected structure for Astro.locals when using Cloudflare adapter
@@ -15,34 +15,34 @@ interface CloudflareLocals {
 export const prerender = false; // Ensure this route is dynamically rendered
 
 export async function GET({ params, locals }: APIContext<CloudflareLocals>) {
-  const path = params.path; // Astro gives us the path directly
+  const key = params.key; // Astro gives us the path directly
 
   // Ensure we have a path and the R2 binding via Astro.locals
   // @ts-ignore - runtime might not be strictly typed depending on setup
-  const storageBucket = locals?.runtime?.env?.R2Bucket;
+  const storageBucket = locals?.runtime?.env?.gifLandR2;
 
-  if (!path || !storageBucket) {
+  if (!key || !storageBucket) {
     console.error(
-      "[Astro R2 Route] Invalid request: Missing path or R2Bucket binding in locals.runtime.env",
+      "[Astro R2 Route] Invalid request: Missing path or gifLandR2 binding in locals.runtime.env",
     );
     return new Response("Not Found or Server Error", { status: 404 });
   }
 
-  console.log(`[Astro R2 Route] Attempting to get: ${path}`);
+  console.log(`[Astro R2 Route] Attempting to get: ${key}`);
 
   try {
     // Get the file from R2 using the binding from Astro.locals
-    const file = await storageBucket.get(path);
+    const file = await storageBucket.get(key);
 
     if (!file) {
-      console.log(`[Astro R2 Route] File not found in R2: ${path}`);
-      return new Response(`File not found: ${path}`, { status: 404 });
+      console.log(`[Astro R2 Route] File not found in R2: ${key}`);
+      return new Response(`File not found: ${key}`, { status: 404 });
     }
 
-    console.log(`[Astro R2 Route] File found: ${path}, Size: ${file.size}`);
+    console.log(`[Astro R2 Route] File found: ${key}, Size: ${file.size}`);
 
     // Determine Content-Type
-    const contentType = file.httpMetadata?.contentType || getContentType(path);
+    const contentType = file.httpMetadata?.contentType || getContentType(key);
     console.log(`[Astro R2 Route] Serving with Content-Type: ${contentType}`);
 
     // Prepare headers
@@ -68,7 +68,7 @@ export async function GET({ params, locals }: APIContext<CloudflareLocals>) {
     });
   } catch (error) {
     console.error(
-      `[Astro R2 Route] Error fetching file from R2: ${path}`,
+      `[Astro R2 Route] Error fetching file from R2: ${key}`,
       error,
     );
     return new Response(
