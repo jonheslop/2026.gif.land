@@ -21,6 +21,7 @@ export default defineConfig({
     // Platform proxy for local dev with R2
     platformProxy: {
       enabled: true,
+      configPath: "wrangler.toml"
     },
   }),
   experimental: {
