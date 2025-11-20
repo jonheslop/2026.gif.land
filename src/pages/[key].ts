@@ -1,6 +1,7 @@
 // Taken from https://github.com/loftwah/astroflare
 
 import type { APIContext } from "astro";
+import { turso } from "../turso";
 
 // Define the expected structure of Cloudflare environment bindings
 interface CloudflareEnv {
@@ -18,6 +19,17 @@ export const prerender = false; // Ensure this route is dynamically rendered
 
 export async function GET({ params, locals }: APIContext<CloudflareLocals>) {
   const key = params.key; // Astro gives us the path directly
+
+  const result = await turso().execute(
+    `SELECT * FROM favourites WHERE published = true AND URL = '${key}'`,
+  );
+
+  if (!result.rows.length) {
+    console.error(
+      `[Astro R2 Route] No published favourite found with URL: ${key}`,
+    );
+    return new Response("Not Found", { status: 404 });
+  }
 
   // Ensure we have a path and the R2 binding via Astro.locals
   // @ts-ignore - runtime might not be strictly typed depending on setup
