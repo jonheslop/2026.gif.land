@@ -3,7 +3,7 @@ export const prerender = false;
 import { turso, type Fave } from "../turso";
 
 const { rows } = await turso.execute(
-  `SELECT * FROM favourites ORDER BY RANDOM() LIMIT 1`,
+  `SELECT * FROM favourites WHERE published = true ORDER BY RANDOM() LIMIT 1`,
 );
 
 const fave = rows[0] as Fave;

@@ -13,7 +13,7 @@ if (!query) {
 const decodedQuery = decodeURI(query);
 
 const { rows } = await turso.execute(
-  `SELECT * FROM favourites WHERE URL LIKE '%${decodedQuery}%' OR TAGS LIKE '%${decodedQuery}%'`,
+  `SELECT * FROM favourites WHERE (URL LIKE '%${decodedQuery}%' OR TAGS LIKE '%${decodedQuery}%') AND published = true`,
 );
 ---
 
