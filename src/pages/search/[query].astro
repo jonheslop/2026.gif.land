@@ -13,7 +13,7 @@ if (!query) {
 const decodedQuery = decodeURI(query);
 const cleanQuery = decodedQuery.replace(/[^a-zA-Z0-9-\s]/g, "");
 
-const { rows } = await turso.execute(
+const { rows } = await turso().execute(
   `SELECT * FROM favourites WHERE (URL LIKE '%${cleanQuery}%' OR TAGS LIKE '%${cleanQuery}%') AND published = true`,
 );
 ---

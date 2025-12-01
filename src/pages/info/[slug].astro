@@ -7,7 +7,7 @@ import { Image } from "astro:assets";
 const { slug } = Astro.params;
 
 export async function getStaticPaths() {
-  const { rows } = await turso.execute(
+  const { rows } = await turso().execute(
     `SELECT * FROM favourites WHERE published = true`,
   );
 

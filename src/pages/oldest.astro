@@ -3,7 +3,7 @@ import { turso } from "../turso";
 import Layout from "../Layout.astro";
 import Item from "../components/Item.astro";
 
-const { rows } = await turso.execute(
+const { rows } = await turso().execute(
   "SELECT * FROM favourites WHERE published = true ORDER BY created_at ASC",
 );
 ---
