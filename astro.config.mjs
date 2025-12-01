@@ -18,12 +18,6 @@ export default defineConfig({
       persistTo: "./functions",
     },
 
-    routes: {
-      extend: {
-        include: [{ pattern: "/random" }, { pattern: "/search/*" }],
-      },
-    },
-
     // Platform proxy for local dev with R2
     platformProxy: {
       enabled: true,
