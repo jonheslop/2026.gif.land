@@ -6,7 +6,7 @@ import Item from "../../components/Item.astro";
 
 const { query } = Astro.params;
 const { env } = Astro.locals.runtime;
-const search = Astro.url.searchParams.get("order") || "";
+const search = Astro.url.searchParams.get("order") || "newest";
 
 if (!query) {
   return Astro.redirect("/");
@@ -37,7 +37,7 @@ const { rows } = await turso({
       >{cleanQuery}</em
     > ordered by <a
       class={`${search === "alphabetical" ? "underline" : "text-neutral-500 hover:underline"}`}
-      href="?order=alphabetical">alphabetical</a
+      href="?order=alphabetical">a-z</a
     >, <a
       class={`${search === "newest" ? "underline" : "text-neutral-500 hover:underline"}`}
       href="?order=newest">newest</a
