@@ -6,6 +6,7 @@ import Item from "../../components/Item.astro";
 
 const { query } = Astro.params;
 const { env } = Astro.locals.runtime;
+const search = Astro.url.searchParams.get("order") || "";
 
 if (!query) {
   return Astro.redirect("/");
@@ -14,18 +15,36 @@ if (!query) {
 const decodedQuery = decodeURI(query);
 const cleanQuery = decodedQuery.replace(/[^a-zA-Z0-9-\s]/g, "");
 
+const order =
+  search === "alphabetical"
+    ? "url ASC"
+    : search === "newest"
+      ? "created_at DESC"
+      : "created_at ASC";
+
 const { rows } = await turso({
   url: env.TURSO_DATABASE_URL,
   authToken: env.TURSO_AUTH_TOKEN,
 }).execute({
-  sql: "SELECT * FROM favourites WHERE (URL LIKE ? OR TAGS LIKE ?) AND published = true",
-  args: [`%${cleanQuery}%`, `%${cleanQuery}%`],
+  sql: `SELECT * FROM favourites WHERE (URL LIKE (:query) OR TAGS LIKE (:query)) AND published = true ORDER BY ${order}`,
+  args: { query: `%${cleanQuery}%` },
 });
 ---
 
 <Layout>
   <p class="mb-8">
-    Search results for: <em>{cleanQuery}</em>
+    Search results for: <em class="bg-yellow-300 ring-2 ring-yellow-300"
+      >{cleanQuery}</em
+    > ordered by <a
+      class={`${search === "alphabetical" ? "underline" : "text-neutral-500 hover:underline"}`}
+      href="?order=alphabetical">alphabetical</a
+    >, <a
+      class={`${search === "newest" ? "underline" : "text-neutral-500 hover:underline"}`}
+      href="?order=newest">newest</a
+    > or <a
+      class={`${search === "oldest" ? "underline" : "text-neutral-500 hover:underline"}`}
+      href="?order=oldest">oldest</a
+    >
   </p>
   <ul
     class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end"
