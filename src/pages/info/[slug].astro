@@ -6,12 +6,11 @@ import CopyButton from "../../components/CopyButton.astro";
 import { Image } from "astro:assets";
 
 const { slug } = Astro.params;
-const { env } = Astro.locals.runtime;
 
 export async function getStaticPaths() {
   const { rows } = await turso({
-    url: env.TURSO_DATABASE_URL,
-    authToken: env.TURSO_AUTH_TOKEN,
+    url: import.meta.env.TURSO_DATABASE_URL ?? process.env.TURSO_DATABASE_URL,
+    authToken: import.meta.env.TURSO_AUTH_TOKEN ?? process.env.TURSO_AUTH_TOKEN,
   }).execute(`SELECT * FROM favourites WHERE published = true`);
 
   const faves = rows as Fave[];
