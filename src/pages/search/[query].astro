@@ -17,14 +17,15 @@ const cleanQuery = decodedQuery.replace(/[^a-zA-Z0-9-\s]/g, "");
 const { rows } = await turso({
   url: env.TURSO_DATABASE_URL,
   authToken: env.TURSO_AUTH_TOKEN,
-}).execute(
-  `SELECT * FROM favourites WHERE (URL LIKE '%${cleanQuery}%' OR TAGS LIKE '%${cleanQuery}%') AND published = true`,
-);
+}).execute({
+  sql: "SELECT * FROM favourites WHERE (URL LIKE ? OR TAGS LIKE ?) AND published = true",
+  args: [`%${cleanQuery}%`, `%${cleanQuery}%`],
+});
 ---
 
 <Layout>
   <p class="mb-8">
-    Search results for: <em>{decodedQuery}</em>
+    Search results for: <em>{cleanQuery}</em>
   </p>
   <ul
     class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end"
