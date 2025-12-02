@@ -2,26 +2,14 @@
 
 import type { APIContext } from "astro";
 
-// Define the expected structure of Cloudflare environment bindings
-interface CloudflareEnv {
-  gifLandR2: R2Bucket; // Use the R2Bucket type if available or 'any'
-}
-
-// Define the expected structure for Astro.locals when using Cloudflare adapter
-interface CloudflareLocals {
-  runtime?: {
-    env: CloudflareEnv;
-  };
-}
-
 export const prerender = false; // Ensure this route is dynamically rendered
 
-export async function GET({ params, locals }: APIContext<CloudflareLocals>) {
+export async function GET({ params, locals }: APIContext) {
   const key = params.key; // Astro gives us the path directly
 
   // Ensure we have a path and the R2 binding via Astro.locals
   // @ts-ignore - runtime might not be strictly typed depending on setup
-  const storageBucket = locals?.runtime?.env?.gifLandR2;
+  const storageBucket = locals.runtime.env.gifLandR2;
 
   if (!key || !storageBucket) {
     console.error(
