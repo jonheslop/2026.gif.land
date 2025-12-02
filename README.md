@@ -14,3 +14,4 @@ I blogged about making it here https://jonheslop.com/posts/2025/gif-land and hav
 
 - A UI for adding new GIFs (would need to be behind auth that only allows me to do it)
 - Allow submissions and build something so I can review them before publishing
+- Add stickers
