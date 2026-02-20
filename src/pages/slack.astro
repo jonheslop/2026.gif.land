@@ -1,0 +1,50 @@
+---
+import Layout from "../Layout.astro";
+---
+
+<Layout title="Stickers">
+  <div
+    class="py-16 2xl:py-32 flex flex-col md:flex-row gap-16 md:gap-4 lg:gap-8"
+  >
+    <figure>
+      <img
+        src="https://gif.land/owlbow.jpg"
+        width={500}
+        height={375}
+        alt="A cute looking felt mouse in a bonnet holding a knife and a raspberry"
+      />
+    </figure>
+    <div class="-mt-px max-w-lg">
+      <h3 class="text-sm text-neutral-500 leading-none">
+        you asked, we delivered
+      </h3>
+      <h2 class="text-2xl">gif.land in your Slack</h2>
+      <p class="my-4 text-pretty">
+        Because sometimes copy/pasting a url is hard.
+      </p>
+      <p class="my-4 text-pretty">
+        Get the gifs super fast: type
+        <code
+          class="font-mono text-sm bg-neutral-100 dark:bg-neutral-700 px-2 py-1 text-emerald-900 dark:text-emerald-300"
+          >/gifland</code
+        > for a random gif<br /> or <code
+          class="font-mono text-sm bg-neutral-100 dark:bg-neutral-700 px-2 py-1 text-emerald-900 dark:text-emerald-300"
+          >/gifland [keyword]</code
+        > to search the whole catalogue.
+      </p>
+
+      <p class="my-4">
+        <a
+          href="https://slack.com/oauth/v2/authorize?client_id=2800230471653.10548804442754&scope=commands&user_scope="
+          ><img
+            alt="Add to Slack"
+            height="40"
+            width="139"
+            src="https://platform.slack-edge.com/img/add_to_slack.png"
+            srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+          /></a
+        >
+      </p>
+    </div>
+  </div>
+</Layout>
