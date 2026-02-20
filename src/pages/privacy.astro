@@ -1,0 +1,38 @@
+---
+import Layout from "../Layout.astro";
+---
+
+<Layout title="Stickers">
+  <div
+    class="py-16 2xl:py-32 flex flex-col md:flex-row gap-16 md:gap-4 lg:gap-8"
+  >
+    <figure>
+      <img
+        src="https://gif.land/fry-see.gif"
+        width={333}
+        height={250}
+        alt="Fry from Futurama squinting in a skeptical way"
+      />
+    </figure>
+    <div class="-mt-px max-w-lg">
+      <h3 class="text-sm text-neutral-500 leading-none">srs bizniz</h3>
+      <h2 class="text-2xl">Privacy policy</h2>
+      <p class="my-4 text-pretty">
+        We can keep this short, this is not a commercial project, we’re not
+        compliling stats, we don’t log searches theres no info stored anywhere
+        about who uses this site or the slack app.
+      </p>
+      <p class="my-4">
+        The source code is all public: <a
+          href="https://github.com/jonheslop/2026.gif.land"
+          class="underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500"
+          >gif.land</a
+        > and <a
+          href="https://github.com/jonheslop/gif-land-slack"
+          class="underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500"
+          >the Slack app</a
+        >.
+      </p>
+    </div>
+  </div>
+</Layout>
