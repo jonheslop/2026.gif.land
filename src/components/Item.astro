@@ -34,8 +34,7 @@ import { Image } from "astro:assets";
       {
         row.tags.split(", ").map((tag: string, index: number) => (
           <a href={`/search/${encodeURI(tag)}`} class="hover:underline">
-            {tag}
-            {index < row.tags.split(", ").length - 1 ? ", " : ""}
+            {`${tag}${index < row.tags.split(", ").length - 1 ? ", " : ""}`}
           </a>
         ))
       }
