@@ -9,11 +9,19 @@ export async function GET({}) {
     return new Response(JSON.stringify(rows), {
       headers: {
         "Content-Type": "application/json",
+        "Content-Disposition": "inline",
       },
     });
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
     }
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Disposition": "inline",
+      },
+    });
   }
 }
