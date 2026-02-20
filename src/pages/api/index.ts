@@ -1,4 +1,3 @@
-export const prerender = false;
 import { turso } from "../../turso";
 
 export async function GET({}) {
