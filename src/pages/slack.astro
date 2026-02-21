@@ -13,16 +13,25 @@ import Layout from "../Layout.astro";
         height={375}
         alt="An little owl in a bowtie"
       />
+      <figcaption class="text-sm flex flex-col">
+        <a
+          class="underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500"
+          target="_blank"
+          href="https://gif.land/owlbow.jpg"
+        >
+          owlbow.jpg
+        </a>
+      </figcaption>
     </figure>
-    <div class="-mt-px max-w-lg">
+    <div
+      class="-mt-px max-w-lg [&_p]:my-4 [&_p]:text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-emerald-700 [&_a]:dark:hover:text-emerald-500"
+    >
       <h3 class="text-sm text-neutral-500 leading-none">
         you asked, we delivered
       </h3>
       <h2 class="text-2xl">gif.land in your Slack</h2>
-      <p class="my-4 text-pretty">
-        Because sometimes copy/pasting a url is hard.
-      </p>
-      <p class="my-4 text-pretty">
+      <p>Because sometimes copy/pasting a url is hard.</p>
+      <p>
         Get the gifs super fast: type
         <code
           class="font-mono text-sm bg-neutral-100 dark:bg-neutral-700 px-2 py-1 text-emerald-900 dark:text-emerald-300"
@@ -33,7 +42,7 @@ import Layout from "../Layout.astro";
         > to search the whole catalogue.
       </p>
 
-      <p class="my-4">
+      <p>
         <a href="https://slack.gif.land/slack/install"
           ><img
             alt="Add to Slack"
@@ -43,6 +52,12 @@ import Layout from "../Layout.astro";
             srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
           /></a
         >
+      </p>
+      <p>
+        The app is a cloudflare worker, <a
+          href="https://github.com/jonheslop/gif-land-slack"
+          >here’s the source code</a
+        >, it uses <a href="/api">this endpoint</a> which is all the gifs in json.
       </p>
     </div>
   </div>

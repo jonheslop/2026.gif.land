@@ -13,16 +13,27 @@ import Layout from "../Layout.astro";
         height={250}
         alt="Fry from Futurama squinting in a skeptical way"
       />
+      <figcaption class="text-sm flex flex-col">
+        <a
+          class="underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500"
+          target="_blank"
+          href="https://gif.land/fry-see.gif"
+        >
+          fry-see.gif
+        </a>
+      </figcaption>
     </figure>
-    <div class="-mt-px max-w-lg">
+    <div
+      class="-mt-px max-w-lg [&_p]:my-4 [&_p]:text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-emerald-700 [&_a]:dark:hover:text-emerald-500"
+    >
       <h3 class="text-sm text-neutral-500 leading-none">srs bizniz</h3>
       <h2 class="text-2xl">Privacy policy</h2>
-      <p class="my-4 text-pretty">
+      <p>
         We can keep this short, this is not a commercial project, we’re not
         compliling stats, we don’t log searches theres no info stored anywhere
         about who uses this site or the slack app.
       </p>
-      <p class="my-4">
+      <p>
         The source code is all public: <a
           href="https://github.com/jonheslop/2026.gif.land"
           class="underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500"
