@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro build && wrangler dev",
+    "deploy": "astro build && wrangler deploy",
     "astro": "astro"
   },
   "pnpm": {
@@ -22,5 +23,8 @@
     "@tailwindcss/vite": "^4.1.14",
     "astro": "^5.14.1",
     "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "wrangler": "^4.69.0"
   }
 }

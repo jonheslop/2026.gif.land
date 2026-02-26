@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "gif-land",
+  "main": "dist/_worker.js/index.js",
+  "compatibility_date": "2026-02-26",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist",
+  },
+  "r2_buckets": [
+    {
+      "binding": "gifLandR2",
+      "bucket_name": "gifland",
+      "preview_bucket_name": "gifland",
+    },
+  ],
+  "vars": {
+    "TURSO_DATABASE_URL": "libsql://bukkit-jonheslop.aws-us-east-1.turso.io",
+  },
+  "observability": {
+    "enabled": true,
+  },
+}
