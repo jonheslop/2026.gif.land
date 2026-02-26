@@ -6,6 +6,46 @@ const fileSizeMB: number = 10;
 const fileSizeBytes: number = fileSizeMB * 1024 * 1024; // 10MB
 
 export const server = {
+  approveGif: defineAction({
+    accept: "form",
+    input: z.object({
+      id: z.number(),
+    }),
+    handler: async ({ id }) => {
+      const result = await turso().execute({
+        sql: "UPDATE favourites SET published = true WHERE id = ? AND published = false",
+        args: [id],
+      });
+
+      if (result.rowsAffected !== 1) {
+        throw new Error("Failed to approve gif");
+      }
+
+      console.log("Gif approved successfully", id);
+
+      return { success: true };
+    },
+  }),
+  deleteGif: defineAction({
+    accept: "form",
+    input: z.object({
+      id: z.number(),
+    }),
+    handler: async ({ id }) => {
+      const result = await turso().execute({
+        sql: "DELETE FROM favourites WHERE id = ? AND published = 0",
+        args: [id],
+      });
+
+      if (result.rowsAffected !== 1) {
+        throw new Error("Failed to delete gif");
+      }
+
+      console.log("Gif deleted successfully", id);
+
+      return { success: true };
+    },
+  }),
   addGif: defineAction({
     accept: "form",
     input: z.object({
