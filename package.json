@@ -2,15 +2,23 @@
   "name": "2026-gif-land",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.9",
-    "@libsql/client": "^0.15.15",
+    "@libsql/client": "^0.17.0",
     "@tailwindcss/vite": "^4.1.14",
     "astro": "^5.14.1",
     "tailwindcss": "^4.1.14"
