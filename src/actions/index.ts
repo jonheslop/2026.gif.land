@@ -32,16 +32,41 @@ export const server = {
       id: z.number(),
     }),
     handler: async ({ id }) => {
+      const row = await turso().execute({
+        sql: "SELECT url FROM favourites WHERE id = ? AND published = 0",
+        args: [id],
+      });
+
+      if (!row.rows.length) {
+        throw new Error("Gif not found");
+      }
+
+      const url = row.rows[0].url as string;
+
+      const cloudflare = await fetch(
+        `https://api.gif.land/${url}`,
+        {
+          method: "DELETE",
+          headers: {
+            "X-Custom-Auth-Key": import.meta.env.CF_WORKER_API_TOKEN || "",
+          },
+        },
+      );
+
+      if (!cloudflare.ok) {
+        throw new Error("Failed to delete file from Cloudflare R2");
+      }
+
       const result = await turso().execute({
         sql: "DELETE FROM favourites WHERE id = ? AND published = 0",
         args: [id],
       });
 
       if (result.rowsAffected !== 1) {
-        throw new Error("Failed to delete gif");
+        throw new Error("Failed to delete gif from DB");
       }
 
-      console.log("Gif deleted successfully", id);
+      console.log("Gif deleted successfully", id, url);
 
       return { success: true };
     },
