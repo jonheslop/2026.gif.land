@@ -33,7 +33,7 @@ export const server = {
     }),
     handler: async ({ id }) => {
       const row = await turso().execute({
-        sql: "SELECT url FROM favourites WHERE id = ? AND published = 0",
+        sql: "SELECT url FROM favourites WHERE id = ?",
         args: [id],
       });
 
@@ -58,7 +58,7 @@ export const server = {
       }
 
       const result = await turso().execute({
-        sql: "DELETE FROM favourites WHERE id = ? AND published = 0",
+        sql: "DELETE FROM favourites WHERE id = ?",
         args: [id],
       });
 
