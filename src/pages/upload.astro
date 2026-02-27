@@ -6,6 +6,10 @@ import { actions } from "astro:actions";
 const result = Astro.getActionResult(actions.addGif);
 
 if (result !== undefined) {
+  if (result.error) {
+    return Astro.redirect("/error");
+  }
+
   // redirect to /thanks
   return Astro.redirect("/thanks");
 }
