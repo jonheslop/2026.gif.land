@@ -95,7 +95,7 @@ export const server = {
         .string()
         .min(1)
         .max(100)
-        .regex(/^[a-zA-Z0-9\s]+$/),
+        .regex(/^[a-zA-Z0-9\s.]+$/),
       author: z
         .string()
         .min(1)
