@@ -2,7 +2,7 @@
 import { actions } from "astro:actions";
 import { Image } from "astro:assets";
 
-const { row, review = false } = Astro.props;
+const { row, review = false, reviewSecret = "" } = Astro.props;
 ---
 
 <li class="flex flex-col gap-2 group">
@@ -12,7 +12,7 @@ const { row, review = false } = Astro.props;
       width={row.width}
       height={row.height}
       alt={row.url}
-      src={`https://gif.land/${row.url}`}
+      src={review ? `https://gif.land/${row.url}?secret=${reviewSecret}` : `https://gif.land/${row.url}`}
     />
   </a>
   <div>

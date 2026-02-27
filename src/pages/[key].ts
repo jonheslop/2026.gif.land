@@ -17,11 +17,15 @@ interface CloudflareLocals {
 
 export const prerender = false; // Ensure this route is dynamically rendered
 
-export async function GET({ params, locals }: APIContext<CloudflareLocals>) {
+export async function GET({ params, locals, request }: APIContext<CloudflareLocals>) {
   const key = params.key; // Astro gives us the path directly
+  const url = new URL(request.url);
+  const secret = url.searchParams.get("secret");
+  const reviewSecret = import.meta.env.REVIEW_SECRET ?? process.env.REVIEW_SECRET;
+  const isReview = reviewSecret && secret === reviewSecret;
 
   const result = await turso().execute(
-    `SELECT * FROM favourites WHERE published = true AND URL = '${key}'`,
+    `SELECT * FROM favourites WHERE ${isReview ? "" : "published = true AND "}URL = '${key}'`,
   );
 
   if (!result.rows.length) {
