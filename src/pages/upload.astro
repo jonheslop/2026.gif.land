@@ -4,10 +4,15 @@ import Layout from "../Layout.astro";
 import { actions } from "astro:actions";
 
 const result = Astro.getActionResult(actions.addGif);
-console.log("result", result);
+
+if (result !== undefined) {
+  // redirect to /thanks
+  return Astro.redirect("/thanks");
+}
+
 ---
 
-<Layout>
+<Layout title="Upload to">
   <div class="flex flex-col lg:grid grid-cols-4 gap-4 lg:gap-8 xl:mt-4">
     <form
       method="POST"
@@ -15,6 +20,7 @@ console.log("result", result);
       action={actions.addGif}
       class="flex flex-col items-start gap-6 max-w-lg w-full bg-neutral-100 dark:bg-neutral-800 p-4 rounded-sm col-span-2"
     >
+      <p>You can submit your own gifs to library, they will be reviewed before going live.</p>
       <fieldset class="flex flex-col gap-px w-full">
         <label for="file" class="text-sm">
           Image
