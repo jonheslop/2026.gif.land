@@ -28,7 +28,7 @@ export async function GET({ params, locals }: APIContext<CloudflareLocals>) {
     console.error(
       `[Astro R2 Route] No published favourite found with URL: ${key}`,
     );
-    return new Response("Not Found", { status: 404 });
+    return new Response("Not authorised", { status: 401 });
   }
 
   // Ensure we have a path and the R2 binding via Astro.locals
