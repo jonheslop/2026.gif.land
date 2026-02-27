@@ -50,12 +50,14 @@ const { row, review = false } = Astro.props;
         Size: {row.width}x{row.height}px
       </p>
       <div class="flex gap-6 mt-4">
-        <form method="POST" action={actions.approveGif}>
-          <input type="hidden" name="id" value={row.id} />
-          <button type="submit" class="px-2 h-12 pb-px bg-emerald-500 dark:bg-emerald-800 text-white hover:bg-emerald-700 focus:bg-emerald-700 transition-colors flex items-center leading-none rounded-sm">
-            Approve
-          </button>
-        </form>
+        {!row.published && (
+          <form method="POST" action={actions.approveGif}>
+            <input type="hidden" name="id" value={row.id} />
+            <button type="submit" class="px-2 h-12 pb-px bg-emerald-500 dark:bg-emerald-800 text-white hover:bg-emerald-700 focus:bg-emerald-700 transition-colors flex items-center leading-none rounded-sm">
+              Approve
+            </button>
+          </form>
+        )}
         <form method="POST" action={actions.deleteGif}>
           <input type="hidden" name="id" value={row.id} />
           <button type="submit" class="px-2 h-12 pb-px bg-red-500 dark:bg-red-800 text-white hover:bg-red-700 focus:bg-red-700 transition-colors flex items-center leading-none rounded-sm">
