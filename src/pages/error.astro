@@ -1,0 +1,36 @@
+---
+import Layout from "../Layout.astro";
+---
+
+<Layout title="Error">
+  <div
+    class="py-16 2xl:py-32 flex flex-col md:flex-row gap-16 md:gap-4 lg:gap-8"
+  >
+    <figure>
+      <img
+        src="https://gif.land/internet-no.gif"
+        width={500}
+        height={375}
+        alt="Finn and Jake from Adventure Time fist bumping in a forest"
+      />
+      <figcaption class="text-sm flex flex-col">
+        <a
+          class="underline underline-offset-2 hover:text-emerald-700 dark:hover:text-emerald-500"
+          target="_blank"
+          href="https://gif.land/internet-no.gif"
+        >
+          internet-no.gif
+        </a>
+      </figcaption>
+    </figure>
+    <div
+      class="-mt-px max-w-lg [&_p]:my-4 [&_p]:text-pretty [&_a]:underline [&_a]:underline-offset-2 [&_a]:hover:text-emerald-700 [&_a]:dark:hover:text-emerald-500"
+    >
+      <h3 class="text-sm text-neutral-500 leading-none">
+        urgh
+      </h3>
+      <h2 class="text-2xl">something went wrong</h2>
+      <p class="text-pretty">Sorry but there was an error processing your request</p>
+    </div>
+  </div>
+</Layout>

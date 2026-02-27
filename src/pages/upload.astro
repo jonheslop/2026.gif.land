@@ -1,0 +1,130 @@
+---
+export const prerender = false;
+import Layout from "../Layout.astro";
+import { actions } from "astro:actions";
+
+const result = Astro.getActionResult(actions.addGif);
+
+if (result !== undefined) {
+  if (result.error) {
+    return Astro.redirect("/error");
+  }
+
+  // redirect to /thanks
+  return Astro.redirect("/thanks");
+}
+
+---
+
+<Layout title="Upload to">
+  <div class="flex flex-col lg:grid grid-cols-4 gap-4 lg:gap-8 xl:mt-4">
+    <form
+      method="POST"
+      enctype="multipart/form-data"
+      action={actions.addGif}
+      class="flex flex-col items-start gap-6 max-w-lg w-full bg-neutral-100 dark:bg-neutral-800 p-4 rounded-sm col-span-2"
+    >
+      <p>You can submit your own gifs to library, they will be reviewed before going live.</p>
+      <fieldset class="flex flex-col gap-px w-full">
+        <label for="file" class="text-sm">
+          Image
+          <span class="text-neutral-500">
+            Must be less than 10MB, preferably much less
+          </span>
+        </label>
+        <input type="file" name="file" class="border p-2 rounded-xs" />
+
+        <p class="text-sm text-neutral-500">
+          Dimensions: <span id="dimensions"></span>
+        </p>
+      </fieldset>
+      <input type="hidden" name="width" id="image-width" />
+      <input type="hidden" name="height" id="image-height" />
+      <fieldset class="flex flex-col gap-px w-full">
+        <label class="text-sm" for="tags">
+          Tags
+          <span class="text-neutral-500"> Comma separated </span>
+        </label>
+        <input
+          class="border p-2 rounded-xs"
+          type="text"
+          name="tags"
+          placeholder="tags"
+          required
+          maxlength="100"
+        />
+      </fieldset>
+      <fieldset class="flex flex-col gap-px">
+        <label class="text-sm" for="source">Source</label>
+        <input
+          class="border p-2 rounded-xs"
+          type="text"
+          name="source"
+          placeholder="source"
+          required
+          maxlength="32"
+        />
+      </fieldset>
+      <fieldset class="flex flex-col gap-px">
+        <label class="text-sm" for="author">
+          Uploader
+          <span class="text-neutral-500"> Your name or alias </span>
+        </label>
+        <input
+          class="border p-2 rounded-xs"
+          type="text"
+          name="author"
+          placeholder="author"
+          required
+          maxlength="32"
+        />
+      </fieldset>
+
+      <button
+        type="submit"
+        class="px-4 h-11 pb-px bg-emerald-500 dark:bg-emerald-800 text-white hover:bg-emerald-700 focus:bg-emerald-700 transition-colors flex items-center leading-none rounded-xs"
+      >
+        Submit
+      </button>
+    </form>
+    <div class="col-span-2">
+      <img class="hidden" id="preview-image" alt="preview image" />
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const fileUpload = document.querySelector(
+    'input[type="file"]',
+  ) as HTMLInputElement;
+  const imagePreview = document.getElementById(
+    "preview-image",
+  ) as HTMLImageElement | null;
+  const dimensions = document.getElementById(
+    "dimensions",
+  ) as HTMLSpanElement | null;
+  const imageWidth = document.getElementById(
+    "image-width",
+  ) as HTMLInputElement | null;
+  const imageHeight = document.getElementById(
+    "image-height",
+  ) as HTMLInputElement | null;
+  fileUpload?.addEventListener("change", async (event) => {
+    const target = event?.target as HTMLInputElement;
+    if (target?.files === null) {
+      return;
+    }
+    if (target?.files && target.files[0] && imagePreview) {
+      imagePreview.src = URL.createObjectURL(target.files[0]);
+      imagePreview.classList.remove("hidden");
+    }
+  });
+
+  imagePreview?.addEventListener("load", () => {
+    if (imagePreview && dimensions && imageWidth && imageHeight) {
+      dimensions.textContent = `${imagePreview.naturalWidth}x${imagePreview.naturalHeight}`;
+      imageWidth.value = imagePreview.naturalWidth.toString();
+      imageHeight.value = imagePreview.naturalHeight.toString();
+    }
+  });
+</script>

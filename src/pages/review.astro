@@ -1,0 +1,36 @@
+---
+export const prerender = false;
+
+import { turso } from "../turso";
+import Layout from "../Layout.astro";
+import Item from "../components/Item.astro";
+
+// Review should only run in development mode
+if (!import.meta.env.DEV) {
+  return Astro.redirect("/");
+}
+
+const reviewSecret = import.meta.env.REVIEW_SECRET ?? "";
+
+const { rows } = await turso().execute(
+  "SELECT * FROM favourites WHERE published = false",
+);
+const { rows: newRows } = await turso().execute(
+  "SELECT * FROM favourites WHERE published = true ORDER BY created_at DESC limit 6",
+);
+---
+
+<Layout title="Review submissions to">
+  <p class="mb-4">Latest Reviews</p>
+  <ul
+    class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end"
+  >
+    {rows.map((row, index) => <Item row={row} key={index} review={true} reviewSecret={reviewSecret} />)}
+  </ul>
+
+  <p class="mt-32 mb-4">Recently added</p>
+  <ul
+    class="font-sans grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-7 gap-8 lg:gap-x-4 2xl:gap-8 items-end" >
+    {newRows.map((row, index) => <Item row={row} key={index} review={true} />)}
+  </ul>
+</Layout>
