@@ -1,6 +1,7 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 import { turso } from "../turso";
+import { ENV } from 'varlock/env';
 
 const fileSizeMB: number = 10;
 const fileSizeBytes: number = fileSizeMB * 1024 * 1024; // 10MB
@@ -48,7 +49,7 @@ export const server = {
         {
           method: "DELETE",
           headers: {
-            "X-Custom-Auth-Key": import.meta.env.CF_WORKER_API_TOKEN || "",
+            "X-Custom-Auth-Key": ENV.CF_WORKER_API_TOKEN || "",
           },
         },
       );
@@ -111,7 +112,7 @@ export const server = {
           method: "PUT",
           body: file,
           headers: {
-            "X-Custom-Auth-Key": import.meta.env.CF_WORKER_API_TOKEN || "",
+            "X-Custom-Auth-Key": ENV.CF_WORKER_API_TOKEN || "",
           },
         },
       );

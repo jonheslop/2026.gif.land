@@ -2,6 +2,7 @@
 import { defineConfig, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import tailwindcss from "@tailwindcss/vite";
+import varlockAstroIntegration from '@varlock/astro-integration';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,6 +10,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   adapter: cloudflare(),
+  integrations: [varlockAstroIntegration()],
   experimental: {
     fonts: [
       {
