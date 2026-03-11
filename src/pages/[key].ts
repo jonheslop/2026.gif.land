@@ -2,7 +2,6 @@
 
 import type { APIContext } from "astro";
 import { turso } from "../turso";
-import { ENV } from 'varlock/env';
 
 // Define the expected structure of Cloudflare environment bindings
 interface CloudflareEnv {
@@ -22,7 +21,7 @@ export async function GET({ params, locals, request }: APIContext<CloudflareLoca
   const key = params.key; // Astro gives us the path directly
   const url = new URL(request.url);
   const secret = url.searchParams.get("secret");
-  const reviewSecret = ENV.REVIEW_SECRET ?? process.env.REVIEW_SECRET;
+  const reviewSecret = import.meta.env.REVIEW_SECRET ?? process.env.REVIEW_SECRET;
   const isReview = reviewSecret && secret === reviewSecret;
 
   const result = await turso().execute(

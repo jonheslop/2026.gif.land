@@ -21,11 +21,8 @@
     "@astrojs/cloudflare": "^12.6.9",
     "@libsql/client": "^0.17.0",
     "@tailwindcss/vite": "^4.1.14",
-    "@varlock/1password-plugin": "^0.2.2",
-    "@varlock/astro-integration": "^0.2.3",
     "astro": "^5.14.1",
-    "tailwindcss": "^4.1.14",
-    "varlock": "^0.4.0"
+    "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
     "wrangler": "^4.69.0"
