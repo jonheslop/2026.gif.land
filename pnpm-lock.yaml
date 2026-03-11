@@ -17,21 +17,12 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.14
         version: 4.2.1(vite@6.4.1(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1))
-      '@varlock/1password-plugin':
-        specifier: ^0.2.2
-        version: 0.2.2(varlock@0.4.0)
-      '@varlock/astro-integration':
-        specifier: ^0.2.3
-        version: 0.2.3(astro@5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(typescript@5.9.3))(varlock@0.4.0)
       astro:
         specifier: ^5.14.1
         version: 5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.1.14
         version: 4.2.1
-      varlock:
-        specifier: ^0.4.0
-        version: 0.4.0
     devDependencies:
       wrangler:
         specifier: ^4.69.0
@@ -1303,19 +1294,6 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@varlock/1password-plugin@0.2.2':
-    resolution: {integrity: sha512-8WDXg5SDOb/jdyswqHe8yKat1Fko2+d+4yWOo/NpgTgR1TaLlUo1t3bbZ0PWCQanDy29RN5EiVTPC7PL0EQbQg==}
-    engines: {node: '>=22'}
-    peerDependencies:
-      varlock: ^0.4.0
-
-  '@varlock/astro-integration@0.2.3':
-    resolution: {integrity: sha512-/XucQzAKGcXDNfM0Lds31Hzvte9Kk27PhD89qPePaufitOpQkIsyO/0Vyg9TRY+E3xk3L4WvBX7/GUg63ga3rQ==}
-    engines: {node: '>=22'}
-    peerDependencies:
-      astro: '>=4'
-      varlock: ^0.4.0
-
   acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
     engines: {node: '>=0.4.0'}
@@ -2403,11 +2381,6 @@ packages:
       uploadthing:
         optional: true
 
-  varlock@0.4.0:
-    resolution: {integrity: sha512-T2AX9jfmVWjgcSXbDBssa1RCkQ7Q+qwyRbGQzRDGumzH+2t0oIOmnZtnoTlQAWWeo4LRqroXRapcyC9vpn9xYQ==}
-    engines: {node: '>=22'}
-    hasBin: true
-
   vfile-location@5.0.3:
     resolution: {integrity: sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==}
 
@@ -3462,15 +3435,6 @@ snapshots:
       '@types/node': 25.3.1
 
   '@ungap/structured-clone@1.3.0': {}
-
-  '@varlock/1password-plugin@0.2.2(varlock@0.4.0)':
-    dependencies:
-      varlock: 0.4.0
-
-  '@varlock/astro-integration@0.2.3(astro@5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(typescript@5.9.3))(varlock@0.4.0)':
-    dependencies:
-      astro: 5.18.0(@types/node@25.3.1)(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(typescript@5.9.3)
-      varlock: 0.4.0
 
   acorn-walk@8.3.2: {}
 
@@ -4953,8 +4917,6 @@ snapshots:
       node-fetch-native: 1.6.7
       ofetch: 1.5.1
       ufo: 1.6.3
-
-  varlock@0.4.0: {}
 
   vfile-location@5.0.3:
     dependencies:
