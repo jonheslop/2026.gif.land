@@ -2,7 +2,7 @@
   "name": "2026-gif-land",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.33.2",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -25,6 +25,7 @@
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.14",
     "wrangler": "^4.69.0"
   }
 }

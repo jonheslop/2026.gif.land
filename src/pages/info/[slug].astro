@@ -1,9 +1,10 @@
 ---
 export const prerender = true;
-import { turso, type Fave } from "../../turso";
-import Layout from "../../Layout.astro";
-import CopyButton from "../../components/CopyButton.astro";
+
 import { Image } from "astro:assets";
+import CopyButton from "../../components/CopyButton.astro";
+import Layout from "../../Layout.astro";
+import { type Fave, turso } from "../../turso";
 
 const { slug } = Astro.params;
 

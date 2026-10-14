@@ -6,19 +6,19 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist",
+    "directory": "./dist"
   },
   "r2_buckets": [
     {
       "binding": "gifLandR2",
       "bucket_name": "gifland",
-      "preview_bucket_name": "gifland",
-    },
+      "preview_bucket_name": "gifland"
+    }
   ],
   "vars": {
-    "TURSO_DATABASE_URL": "libsql://bukkit-jonheslop.aws-us-east-1.turso.io",
+    "TURSO_DATABASE_URL": "libsql://bukkit-jonheslop.aws-us-east-1.turso.io"
   },
   "observability": {
-    "enabled": true,
-  },
+    "enabled": true
+  }
 }
