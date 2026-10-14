@@ -1,7 +1,8 @@
 ---
 export const prerender = false;
-import Layout from "../Layout.astro";
+
 import { actions } from "astro:actions";
+import Layout from "../Layout.astro";
 
 const result = Astro.getActionResult(actions.addGif);
 
@@ -88,7 +89,7 @@ if (result !== undefined) {
       </button>
     </form>
     <div class="col-span-2">
-      <img class="hidden" id="preview-image" alt="preview image" />
+      <img class="hidden" id="preview-image" alt="preview" />
     </div>
   </div>
 </Layout>
@@ -114,7 +115,7 @@ if (result !== undefined) {
     if (target?.files === null) {
       return;
     }
-    if (target?.files && target.files[0] && imagePreview) {
+    if (target?.files[0] && imagePreview) {
       imagePreview.src = URL.createObjectURL(target.files[0]);
       imagePreview.classList.remove("hidden");
     }

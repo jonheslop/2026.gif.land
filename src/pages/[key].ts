@@ -1,6 +1,7 @@
 // Taken from https://github.com/loftwah/astroflare
 
 import type { APIContext } from "astro";
+import { ENV } from "varlock/env";
 import { turso } from "../turso";
 
 // Define the expected structure of Cloudflare environment bindings
@@ -17,7 +18,11 @@ interface CloudflareLocals {
 
 export const prerender = false; // Ensure this route is dynamically rendered
 
-export async function GET({ params, locals, request }: APIContext<CloudflareLocals>) {
+export async function GET({
+  params,
+  locals,
+  request,
+}: APIContext<CloudflareLocals>) {
   const key = params.key; // Astro gives us the path directly
   const url = new URL(request.url);
   const secret = url.searchParams.get("secret");
@@ -36,7 +41,7 @@ export async function GET({ params, locals, request }: APIContext<CloudflareLoca
   }
 
   // Ensure we have a path and the R2 binding via Astro.locals
-  // @ts-ignore - runtime might not be strictly typed depending on setup
+  // @ts-expect-error - runtime might not be strictly typed depending on setup
   const storageBucket = locals?.runtime?.env?.gifLandR2;
 
   if (!key || !storageBucket) {

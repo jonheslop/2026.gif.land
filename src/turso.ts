@@ -1,5 +1,5 @@
+import type { Row } from "@libsql/client";
 import { createClient } from "@libsql/client/web";
-import { type Row } from "@libsql/client";
 
 export const turso = (
   config = {

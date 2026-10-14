@@ -1,7 +1,7 @@
 ---
-import { turso } from "../turso";
-import Layout from "../Layout.astro";
 import Item from "../components/Item.astro";
+import Layout from "../Layout.astro";
+import { turso } from "../turso";
 
 const { rows } = await turso().execute(
   "SELECT * FROM favourites WHERE published = true ORDER BY created_at ASC",

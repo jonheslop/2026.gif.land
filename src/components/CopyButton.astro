@@ -1,9 +1,11 @@
 ---
+
 const { text } = Astro.props;
 ---
 
 <astro-copy data-text={text}>
   <button
+    type="button"
     class="px-2 h-12 pb-px bg-emerald-500 dark:bg-emerald-800 text-white hover:bg-emerald-700 focus:bg-emerald-700 transition-colors mt-4 flex items-center leading-none rounded-sm"
   >
     copy link to clipboard
